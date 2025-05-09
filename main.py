@@ -57,7 +57,7 @@ def two_point_choice(): #two point strat function
             opp_team += 1
         if free_throw2 >= free_th_prob:
             opp_team += 1
-        while timer != 0: #countdown continues after free throw is made (something is wrong here but i dont know what)
+        while timer > 0: #countdown continues after free throw is made (fixed?)
             off_reb = random.random() #rebound random number generator
             if off_reb >= off_reb_prob: # decides if we get ball or opponent gets ball
                 shot_attempt = random.random()
@@ -65,8 +65,8 @@ def two_point_choice(): #two point strat function
                     team += 2
                     timer -= 3
             else:
-                shot_attempt = random.random()
-                if shot_attempt >= two_p_prob:
+                shot_attempt_off = random.random()
+                if shot_attempt_off >= two_p_prob:
                     opp_team += 2
                     timer -= 3
     if team > opp_team: #bandaid for win counter
@@ -76,6 +76,7 @@ def two_point_choice(): #two point strat function
         loss = 0
         return loss
 
+#^make return certain value to main body so response can be sorted into dict to be calculated
 
 
 
@@ -99,6 +100,7 @@ def three_point_choice(): #three point stratagy trial function
             loss = 0
             return loss
      
+#same with this one
 
 def basket_ball_sim(num_trials): # where average and percentage is calculated 
     win_two_p = 0 # proto win counter
@@ -113,8 +115,8 @@ def basket_ball_sim(num_trials): # where average and percentage is calculated
             two_point_out = two_point_choice() # where 2 point trials are documented
             if two_point_out == 1:
                 win_two_p += 1
-    percent_three_p = win_three_p/num_trials # percent calculation 
-    percent_two_p = win_two_p/num_trials
+    percent_three_p = (win_three_p/num_trials) * 100 # percent calculation 
+    percent_two_p = (win_two_p/num_trials) * 100
     print(percent_three_p,percent_two_p)
     
         
